@@ -1,17 +1,20 @@
-import Reactc, {Component} from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { paddedString } from 'uuid-js';
-
+import Weather from "./Weather";
 export default class App extends Component {
   state = {
-    isLoaded: false
-  }
+    isLoaded: true
+  };
   render(){
+    const { isLoaded } = this.state;
     return (
-      <View style={styles.container}>
-        {isLoaded} ? null : <View style={styles.loading}>
-          <Text style={styles.loadingText}>Getting the weather</Text>
-        </View>
+      <View style={styles.container} >
+        {isLoaded ? (<Weather />) : 
+        (
+          <View style={styles.loading}>
+            <Text style={styles.loadingText} >Getting the weather</Text>
+          </View>
+        )} 
       </View>
     );
   }
@@ -33,7 +36,5 @@ const styles = StyleSheet.create({
   loadingText: {
     fontSize: 38,
     marginBottom: 100,
-
-
   }
 });
